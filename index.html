@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Digital Intelligence Vault</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Securely access your confidential document via password-protected digital vault. Built for privacy, trust, and data integrity.">
+  <meta name="robots" content="noindex,nofollow">
+  
+  <style>
+    body {
+      background-color: #f4f6f9;
+      color: #222;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2em;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 2em;
+      max-width: 600px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      color: #00796b;
+    }
+    input[type="password"] {
+      padding: 0.7em;
+      width: 90%;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-top: 1em;
+      font-size: 1em;
+    }
+    button {
+      background-color: #00796b;
+      color: white;
+      border: none;
+      padding: 0.7em 1.2em;
+      margin-top: 1em;
+      cursor: pointer;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 1em;
+    }
+    #protected-content {
+      display: none;
+      margin-top: 2em;
+      word-wrap: break-word;
+    }
+    .watermark {
+      font-size: 0.85em;
+      color: #666666;
+      margin-top: 1.5em;
+    }
+    a {
+      color: #00796b;
+      text-decoration: underline;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🔐 Digital Intelligence Vault</h2>
+    <p>This vault is password-protected. Enter the password below to access the file.</p>
+    <input type="password" id="passwordInput" placeholder="Enter Access Password" />
+    <br />
+    <button onclick="checkPassword()">Unlock Vault</button>
+
+    <div id="protected-content">
+      <h3>✅ Access Granted</h3>
+      <p><strong>Download Link:</strong></p>
+      <p><a id="fileLink" href="#" target="_blank"></a></p>
+      <div class="watermark" id="watermark"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("contextmenu", (e) => e.preventDefault()); // Disable right-click
+
+    // Support Enter key
+    document.getElementById("passwordInput").addEventListener("keyup", function(event) {
+      if (event.key === "Enter") {
+        checkPassword();
+      }
+    });
+
+    function checkPassword() {
+      const password = document.getElementById("passwordInput").value;
+      const correctPassword = "MySecurePassword123";
+
+      if (password === correctPassword) {
+        document.getElementById("protected-content").style.display = "block";
+
+        const fileLink = "https://5o7yemvevuei4bms45zzziy4bjhjqyvqpls5nb5vde2wkuitfnba.arweave.net/67-CMqStCI4FkudznKMcCk6YYrB65daHtRk1ZVETK0I";
+
+        document.getElementById("fileLink").href = fileLink;
+        document.getElementById("fileLink").textContent = "Click here to download your file instantly.";
+        document.getElementById("watermark").textContent = "Data Tx ID: 67-CMqStCI4FkudznKMcCk6YYrB65daHtRk1ZVETK0I";
+      } else {
+        alert("❌ Incorrect password. Try again.");
+        document.getElementById("passwordInput").value = ""; // Auto-clear password field
+      }
+    }
+  </script>
+</body>
+</html>
